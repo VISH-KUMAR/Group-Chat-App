@@ -11,7 +11,6 @@ import { Subscription } from 'rxjs';
   templateUrl: 'ibox.html',
 })
 export class IboxPage implements OnDestroy {
-
   users = [];
   userId: string;
   usersData: Subscription;
