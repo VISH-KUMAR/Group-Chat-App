@@ -1,0 +1,17 @@
+page-chat {
+    ion-navbar{
+        max-height:6rem;
+    }
+    .item__avatar{
+        background-color: transparent;
+        
+        &-img{
+            margin:0;
+        }
+    }
+
+}
+.list-ios > .item-block:first-child {
+    border-top:0;
+    border-bottom: 0;
+}

@@ -1,0 +1,33 @@
+
+<ion-header>
+
+  <ion-navbar>
+    <ion-title>{{user.data.firstName}} {{user.data.lastName}}</ion-title>
+  </ion-navbar>
+
+</ion-header>
+
+
+<ion-content>
+  <ion-card no-margin style="width:100%;">
+      <img src="assets/imgs/1.png" alt = "profielImage"/>
+    <ion-card-content>
+      <ion-card-title text-center>
+        {{user.data.firstName}} {{user.data.lastName}}
+        </ion-card-title>
+    </ion-card-content>
+  </ion-card>
+  <ion-card no-margin style="width:100% ;margin-top:10px;">
+    <ion-card-header no-padding>
+      About
+    </ion-card-header>
+    <ion-card-content>
+      <ion-item>
+        <ion-label>Username :&nbsp;&nbsp; {{user.data.userName}}</ion-label>
+      </ion-item>
+      <ion-item>
+          <ion-label>Status :&nbsp;&nbsp;  {{user.data.status}}</ion-label>
+        </ion-item>
+  </ion-card-content>
+</ion-card>
+</ion-content>

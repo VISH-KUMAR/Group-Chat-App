@@ -1,0 +1,9 @@
+
+<ion-list no-margin  (click)="profilePage()">
+    <ion-item  no-padding  class="item__avatar" >
+      <ion-avatar item-start>
+        <img [src]="userD.avatar">
+      </ion-avatar>
+      <h2>{{userD.firstName}} {{userD.lastName}}</h2>
+    </ion-item>
+  </ion-list>

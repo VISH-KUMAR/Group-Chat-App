@@ -1,0 +1,50 @@
+
+<ion-header>
+  <ion-navbar>
+      <ion-title>{{userProfile.user.firstName}} {{userProfile.user.lastName}}</ion-title>
+      <ion-buttons end>
+        <button ion-button icon-only (click)="editUserDetails()">
+          <ion-icon name="create"></ion-icon>
+        </button>
+      </ion-buttons>
+    </ion-navbar>
+</ion-header>
+
+<ion-content >
+  <!-- <div class="profileview">
+    <img class="profileview__img" src="assets/imgs/3.jpg" alt="profile">
+  </div> -->
+  <ion-card>
+      <ion-card-content no-padding style="width:100%;">
+        <div class="profile">
+        <img  class="profile__photo" src="assets/imgs/1.png" alt="profielImage"/> 
+      </div>
+    </ion-card-content>
+  </ion-card>
+  <ion-card>
+    <ion-card-content>
+      <ion-list>
+          <ion-item>
+            <ion-label><ion-icon name="person"></ion-icon>&nbsp;&nbsp;<h4> {{userProfile.user.userName}}</h4></ion-label>
+          </ion-item>
+    </ion-list>   
+    </ion-card-content>
+  </ion-card>
+  <ion-card margin-top>
+      <ion-card-header>
+        About
+      </ion-card-header>
+      <ion-card-content>
+       <ion-item>
+         <ion-label><ion-icon name="person"></ion-icon>&nbsp;&nbsp;{{userProfile.user.firstName}} {{userProfile.user.lastName}}</ion-label>
+       </ion-item>
+       <ion-item>
+          <ion-label><ion-icon name="mail"></ion-icon>&nbsp;&nbsp;{{userProfile.email}}</ion-label>
+        </ion-item>
+        <ion-item>
+            <ion-label><ion-icon name="person"></ion-icon>&nbsp;&nbsp;  {{userProfile.user.status}}</ion-label>
+          </ion-item>
+      </ion-card-content>
+    </ion-card>
+    <button ion-button block (click)="signOut()">Logout</button>
+</ion-content>

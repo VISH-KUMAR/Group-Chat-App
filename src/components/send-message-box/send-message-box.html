@@ -1,0 +1,10 @@
+<ion-row no-padding>
+  <ion-col col-10 no-padding class="sendbox">
+    <input no-margin class="sendbox__textArea" type="textarea" placeholder="Enter Message" [(ngModel)]="message">
+  </ion-col>
+  <ion-col col-2 no-padding>
+    <button class="sendbox__button" ion-button  icon-only (click)="sendMessage()">
+      <ion-icon name="send"></ion-icon>
+    </button>
+  </ion-col>
+</ion-row>

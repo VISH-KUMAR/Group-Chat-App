@@ -1,0 +1,9 @@
+<div class="chatMessage" >
+  <div class="messages" *ngFor="let message of chats | async">
+    <div (press)="delete(message)" [class]="message.messageTo == selectedUserId ? 'messages__li messages__right' : 'messages__li messages__left'">
+      {{message.message}}
+      <br>
+      <ion-note item-end class="time">{{message.time}}</ion-note>
+   </div>
+  </div>
+</div>

@@ -1,0 +1,23 @@
+<ion-header>
+  <ion-navbar color="primary">
+    <!-- chatting page header -->
+    <!-- <chat-page-navbar [user]='user'></chat-page-navbar> -->
+    <ion-list no-margin  (click)="profilePage()">
+        <ion-item  no-padding  class="item__avatar" >
+          <ion-avatar item-start>
+            <img src="assets/imgs/1.png" alt="avatar">
+          </ion-avatar>
+          <h2>{{user.data.firstName}} {{user.data.lastName}}</h2>
+        </ion-item>
+      </ion-list>
+  </ion-navbar> 
+</ion-header>
+
+<ion-content padding>
+  <chat-message></chat-message>
+</ion-content>
+
+ <!-- input box area for composing message -->
+<ion-footer>
+      <send-message-box (userMsg)="msgFromSendBox($event)"></send-message-box>
+</ion-footer>

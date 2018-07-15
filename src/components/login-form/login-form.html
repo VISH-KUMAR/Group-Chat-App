@@ -1,0 +1,39 @@
+<form #logniForm="ngForm" nonvalidate>
+<ion-card padding-horizontal>
+    <ion-card-header text-center no-padding margin-top><h1>LOGIN</h1></ion-card-header>
+  <ion-card-content>
+      <ion-item>
+          <ion-label floating  no-margin><ion-icon name="mail" item-left primary></ion-icon>Email</ion-label>
+          <ion-input 
+          type="email"
+          [(ngModel)]="account.email"
+          name="email"
+          #email="ngModel"
+          required
+          ></ion-input>
+        </ion-item>
+        <div padding *ngIf="email.invalid && email.dirty"> 
+          <span>!!!Enter a valid email address</span>
+        </div>
+        <ion-item>
+          <ion-label floating  no-margin><ion-icon name="lock" item-left primary></ion-icon>Password</ion-label>
+          <ion-input 
+          [(ngModel)]="account.password" 
+          type="password"
+          name="password" 
+          #password="ngModel"
+          required
+          ></ion-input>
+        </ion-item>
+        <div padding *ngIf="password.invalid && password.dirty"> 
+          <span>!!!Enter a valid password</span>
+        </div>
+        <button (click)="submit()" ion-button  outline margin-top color="primary" block >Login</button>
+    <p text-center  margin-top>-or-</p>
+    <button ion-button  icon-left outline  block margin-top (click) = "login()" color="danger">
+      <ion-icon name="logo-googleplus"></ion-icon>
+        LOGIN WITH GOOGLE
+      </button>
+  </ion-card-content>
+</ion-card>
+</form>

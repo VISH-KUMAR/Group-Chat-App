@@ -1,0 +1,38 @@
+chat-message {
+   
+}
+
+.messages {
+	margin:0;
+	padding:0;
+	list-style-type:none;
+}
+
+.messages li {
+	display:block;
+	clear:both;
+	max-width:50%;
+	margin:0 0 1rem 0;
+    padding:0;
+
+}
+
+.messageRight li {
+	float:right;
+	background:#158ffe;
+	border-radius:.75rem;
+	color:#fff;
+}
+
+.messageLeft li {
+	float:left;
+	border-radius:.75rem;
+	background:#e6e5eb;
+	color:#383641;
+ }
+.messages li {
+	padding:.6875rem;
+	margin:0;	
+	font-size:1.4rem;
+}
+

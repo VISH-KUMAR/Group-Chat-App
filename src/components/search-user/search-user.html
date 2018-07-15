@@ -1,0 +1,12 @@
+<ion-searchbar [(ngModel)]="name" (ionInput)="searchUser(name)" ></ion-searchbar>
+<ion-list>
+  <ion-item *ngFor="let user of users | async" no-lines no-padding no-margin>
+    <ion-avatar item-start >
+      <img src="assets/imgs/1.png" alt="avatar" (click)="showPhoto($event, 'assets/imgs/1.png')">
+    </ion-avatar>
+    <div (click)="navigateToPage(user)">
+      <h2>{{user.data.firstName}} {{user.data.lastName}}</h2>
+      <p>{{user.data.status}}</p>
+    </div>
+  </ion-item>
+</ion-list>

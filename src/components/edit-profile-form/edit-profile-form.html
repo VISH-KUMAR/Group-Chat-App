@@ -1,0 +1,30 @@
+<form action="submit">
+<ion-card>
+  <ion-card-content no-padding style="width:100%;">
+    <div class="profile">
+    <img  class="profile__photo" src="assets/imgs/1.png" alt="profielImage"/> 
+  </div>
+</ion-card-content>
+</ion-card>
+  <ion-card>
+  <ion-card-content padding>
+    <ion-item>
+      <ion-label floating>FirstName</ion-label>
+      <ion-input [(ngModel)]="userProfile.firstName" name="firstName" type="text" ></ion-input>
+    </ion-item>
+    <ion-item>
+      <ion-label floating>LastName</ion-label>
+      <ion-input [(ngModel)]="userProfile.lastName" name="lastName" type="text"></ion-input>
+    </ion-item>
+    <ion-item>
+      <ion-label floating>Username</ion-label>
+      <ion-input [(ngModel)]="userProfile.userName" name="userName" type="text"></ion-input>
+    </ion-item>
+    <ion-item>
+      <ion-label floating>Status</ion-label>
+      <ion-input [(ngModel)]="userProfile.status" name="status" type="text"></ion-input>
+    </ion-item>    
+    <button margin-top ion-button block color="secondary" (click)="submit()">Save</button>
+  </ion-card-content>
+</ion-card>
+</form>

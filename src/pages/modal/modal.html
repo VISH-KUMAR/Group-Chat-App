@@ -1,0 +1,27 @@
+
+<ion-header>
+
+  <ion-navbar>
+    <ion-title>Create Group</ion-title>
+    <ion-buttons end>
+      <button ion-button (click)="save()">save</button>
+    </ion-buttons>
+  </ion-navbar>
+
+</ion-header>
+
+
+<ion-content padding>
+  <ion-label>Choose your Friends</ion-label>
+  <hr>
+  <ion-list>
+        <ion-item *ngFor="let user of users; let i=index" no-lines no-padding no-margin (press)="selectUser(user,i)"
+         [ngClass]="{'added':flags[i]}">
+          <ion-avatar item-start >
+            <img src="assets/imgs/1.png" alt="avatar">
+          </ion-avatar>
+            <h2>{{user.data.firstName}} {{user.data.lastName}}</h2>
+            <p>{{user.data.status}}</p>
+          </ion-item>
+      </ion-list>
+</ion-content>

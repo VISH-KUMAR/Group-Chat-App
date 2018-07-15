@@ -1,0 +1,15 @@
+
+<ion-header>
+
+  <ion-navbar>
+    <ion-title>Login</ion-title>
+  </ion-navbar>
+
+</ion-header>
+
+<ion-content padding>
+  <!-- <img src="assets/imgs/LOGO1.png" alt="Logo" class="logo"> -->
+    <!-- geting the loginData from login-form and passing this data to login function as $event     -->
+    <!-- 'loginData' name should be same that we use in emiting the data -->
+  <login-form (loginData) = "login($event)"></login-form>
+</ion-content>

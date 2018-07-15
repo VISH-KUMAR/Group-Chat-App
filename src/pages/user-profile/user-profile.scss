@@ -1,0 +1,13 @@
+page-user-profile {
+    .profileview{
+        background-color: black;
+        height: 22rem;
+        &__img{
+            transform: translate(70px,36px);
+            border-radius: 65px;
+        }
+    }
+    ion-label{
+        display:flex;
+    }
+}

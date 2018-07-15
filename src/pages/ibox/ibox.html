@@ -1,0 +1,31 @@
+
+<ion-header>
+
+  <ion-navbar>
+      <ion-title>
+        All Users
+      </ion-title>
+      <ion-buttons end>
+        <button ion-button icon-only (click)="searchUserPage()">
+          <ion-icon name="search"></ion-icon>
+        </button>
+      </ion-buttons>
+    </ion-navbar>
+</ion-header>
+
+
+<ion-content padding>
+  <div (swipe)="swipe($event)" class='mainContent'>
+  <ion-list>
+    <ion-item *ngFor="let user of users" no-lines no-padding no-margin>
+      <ion-avatar item-start >
+         <img src="assets/imgs/1.png" alt="avatar"> <!-- (click)="showPhoto($event, 'assets/imgs/1.png')" -->
+      </ion-avatar>
+      <div (click)="navigateToPage(user)">
+        <h2>{{user.data.firstName}} {{user.data.lastName}}</h2>
+        <p>{{user.data.status}}</p>
+      </div>
+    </ion-item>
+  </ion-list>
+</div>
+</ion-content>

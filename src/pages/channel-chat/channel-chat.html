@@ -1,0 +1,36 @@
+<ion-header>
+
+  <ion-navbar>
+    <ion-title>{{channel.Name}}</ion-title>
+  </ion-navbar>
+
+</ion-header>
+
+
+<ion-content padding>
+  <!-- <ion-list>
+    <ion-item *ngFor="let message of messages | async">
+      <p>{{message.message}}</p>    
+    </ion-item>
+  </ion-list> -->
+  <!-- <div class="chatMessage">
+    <ol  class="messages messageRight">
+      <li margin-top *ngFor="let message of messages | async">
+        <p text-uppercase text-right no-margin >{{message.userName}}</p>
+        {{message.message}}
+      </li>
+    </ol>
+  </div>   -->
+    <div class="messages" *ngFor="let message of messages | async">
+      <div [class]="message.uid == userId ? 'messages__li messages__right' : 'messages__li messages__left'" (press)="delete(message)">
+        <p text-uppercase  no-margin>
+          <strong>{{message.userName}}</strong>
+        </p>
+        {{message.message}}
+     </div>
+    </div>
+
+</ion-content>
+<ion-footer>
+  <send-message-box (channelMsg)="msgFromSendBox($event)"></send-message-box>
+</ion-footer>
