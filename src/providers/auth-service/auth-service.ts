@@ -57,9 +57,11 @@ export class AuthServiceProvider {
   }
 
   signOut(){
-    console.log('signout')
+    
     this.afAuth.auth.signOut();
-    this.storage.set('loginStatus',false);
+    // this.storage.set('loginStatus',false);
+    // this.storage.remove('userCredentials');
+    this.storage.clear();
     return true;
   }
 

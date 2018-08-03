@@ -27,7 +27,11 @@ export class UserGroupChatServiceProvider {
     private profileDataService: ProfileDataServiceProvider,
     private storage: Storage
   ) {
-    this.userId = this.profileDataService.getUserId();
+    //this.userId = this.profileDataService.getUserId();
+    this.storage.get('authenticatedUser').then((val)=>{
+      console.log(val);
+      this.userId = val.uid;
+    })
     console.log(this.userId)
 
   }

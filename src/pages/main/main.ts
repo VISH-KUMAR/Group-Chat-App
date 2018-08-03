@@ -24,6 +24,7 @@ import { FcmProvider } from '../../providers/fcm/fcm';
 import { ToastController } from 'ionic-angular';
 import { Subject } from 'rxjs/Subject';
 import { tap } from 'rxjs/operators';
+import { Storage } from '@ionic/storage';
 
 
 @IonicPage()
@@ -37,7 +38,8 @@ export class MainPage implements OnInit {
 ////////////////////////////////////
   channel:AngularFirestoreCollection<Channel>;
   group:Observable<ChannelId[]>;
-  channels:any; 
+  channels:any;
+  authenticatedUserId:string; 
 ////////////////////////////
 
   constructor(
@@ -52,7 +54,8 @@ export class MainPage implements OnInit {
     private profileDataService:ProfileDataServiceProvider,
     private userGroupService:UserGroupChatServiceProvider,
     public fcm: FcmProvider,
-    public toastCtrl: ToastController
+    public toastCtrl: ToastController,
+    private storage:Storage,
   ) {
     /*
     this.storage.get('loginStatus').then(loggedIn=>{
@@ -63,15 +66,20 @@ export class MainPage implements OnInit {
       }
     })
     */
+
     this.loader = this.loadingCtrl.create({
       content: "Please wait...",
       duration:1000,
       dismissOnPageChange:true
     });
     this.loader.present();
-
-   //for set the no of groups on screen  
-   this.group = this.userGroupService.getGroupsOfUser(this.profileDataService.getUserId());
+    
+    
+    //for set the no of groups on screen  
+    setTimeout(()=>{
+      this.authenticatedUserId = this.profileDataService.getUserId()
+  },3000);
+  this.group = this.userGroupService.getGroupsOfUser(this.authenticatedUserId);
    console.log(this.group)
    
    /*
@@ -84,12 +92,18 @@ export class MainPage implements OnInit {
       }))
     );
     */
-
   }
-  
-  /*
+  ionViewWillLoad(){
+        //// getting the authenticated user from storage  //// 
+        this.storage.get('authenticatedUser').then((val)=>{
+          console.log(val);
+          this.authenticatedUserId = val.uid;
+          console.log(this.authenticatedUserId)
+        }) 
+  }
 /////// for notifications  ////////
   ionViewDidLoad(){
+    /*
      // Get a FCM token
      this.fcm.getToken()
      
@@ -106,10 +120,10 @@ export class MainPage implements OnInit {
         })
       )
       .subscribe()
-
     },3000)
+    */
   }
-  */
+  
  
   ///// moving to selected the group  chat page /////
   selectedGroup(group){

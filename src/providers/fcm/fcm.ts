@@ -22,6 +22,8 @@ export class FcmProvider {
 
   if (this.platform.is('android')) {
     token = await this.firebaseNative.getToken()
+    console.log(token);
+    alert(token);
   } 
   console.log('getting the token')
   if (this.platform.is('ios')) {
@@ -41,6 +43,7 @@ export class FcmProvider {
       token,
       userId: 'userId',
     }
+    alert(docData);
     return devicesRef.doc(token).set(docData)
   }
 

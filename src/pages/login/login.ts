@@ -38,6 +38,7 @@ export class LoginPage {
       
     }
     else{
+      this.storage.set('loginStatus',false);
       this.toast.create({
         message: event.error.message,
         duration:3000,

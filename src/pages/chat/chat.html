@@ -5,7 +5,7 @@
     <ion-list no-margin  (click)="profilePage()">
         <ion-item  no-padding  class="item__avatar" >
           <ion-avatar item-start>
-            <img src="assets/imgs/1.png" alt="avatar">
+            <img src="{{user.profilePic}}" alt="avatar">
           </ion-avatar>
           <h2>{{user.data.firstName}} {{user.data.lastName}}</h2>
         </ion-item>

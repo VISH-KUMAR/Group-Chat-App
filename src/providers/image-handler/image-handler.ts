@@ -87,6 +87,7 @@ export class ImghandlerProvider {
   }
 
   picmsgstore() {
+    console.log('in picmsgsstore')
     var promise = new Promise((resolve, reject) => {
         this.filechooser.open().then((url) => {
           (<any>window).FilePath.resolveNativePath(url, (result) => {

@@ -6,7 +6,7 @@ import { Injectable, OnDestroy } from '@angular/core';
 //ANGULAR FIRE STORE
 import { AngularFirestore, AngularFirestoreCollection, AngularFirestoreDocument } from 'angularfire2/firestore';
 import { Observable } from 'rxjs';
-import { map } from 'rxjs/operators'
+import { map } from 'rxjs/operators';
 import { Subscription } from 'rxjs/Subscription';
 import { AuthServiceProvider } from '../../providers/auth-service/auth-service';
 
@@ -21,6 +21,7 @@ import { Storage } from '@ionic/storage';
 @Injectable()
 export class ProfileDataServiceProvider implements OnDestroy {
   userProfile;
+  userProfilePic;
   userProfileobject:AngularFirestoreCollection<UserProfile>
   profiles:Observable<UserProfile[]>;
   //afs is the reference which is used to save and get data from the firestore from different nodes
@@ -32,15 +33,19 @@ export class ProfileDataServiceProvider implements OnDestroy {
   constructor(
     private afs:AngularFirestore,
     private authService:AuthServiceProvider,
-    private storage: Storage
+    private storage: Storage,
   ) {
+
     //////// getting the logged in user data //////////
     this.authenticatedUser$ = this.authService.getAuthenticatedUser().subscribe((user:User)=>{
       this.authenticatedUser = user;
       console.log(this.authenticatedUser);
+      if(user != null){
+        console.log('settting the data to storage')
+        this.storage.set('authenticatedUser',{uid:this.authenticatedUser.uid , email:this.authenticatedUser.email});
+      }
     });
-
-    console.log('this is profile data service constructor')
+       
     this.userProfileobject = afs.collection<UserProfile>('/profiles');
     this.profiles = this.userProfileobject.snapshotChanges().pipe(
       map( action => action.map(a =>{
@@ -48,19 +53,29 @@ export class ProfileDataServiceProvider implements OnDestroy {
         const id = a.payload.doc.id;
         return { id , ...data}
        }))
-     ); 
+     );
+
+
+     this.storage.get('userProfile').then((val)=>{
+      if(val != null){
+        this.userProfile = val.data;
+        this.userProfilePic = val.profilePic
+      }
+     }) 
   }
   
   /////// sending the data to database while persisting the id as the Authenticated userId //////
-  setData(data){
+  setData(data, profilePic){
     this.userProfile = data;
+    this.userProfilePic = profilePic;
      // Persist a document id and set the profile data to that id only(ie to logged user)
     const id = this.authenticatedUser.uid;
     console.log(this.authenticatedUser.email) 
-    const profile = { email:this.authenticatedUser.email, data}
+    const profile = { email:this.authenticatedUser.email, data , profilePic:profilePic}
 
-    /// setData in local storage////
-   // this.storage.set(id, profile);
+    /// setData in local storage///
+    this.storage.set('userProfile', profile);
+    
     /// setData on firebase ////
     this.userProfileobject.doc(id).set(profile);
   }
@@ -70,10 +85,9 @@ export class ProfileDataServiceProvider implements OnDestroy {
     const id = this.authenticatedUser.uid;
     console.log( this.userProfileobject.doc(id).valueChanges())
     return this.userProfileobject.doc(id).valueChanges();
-     
   }
   getUserData1(){
-    return {user:this.userProfile, email:this.authenticatedUser.email , id:this.authenticatedUser.uid};
+    return { user:this.userProfile, email:this.authenticatedUser.email , id:this.authenticatedUser.uid ,profilePic:this.userProfilePic};
   }
 
   ////////// Authenticated User ///////////
@@ -83,12 +97,13 @@ export class ProfileDataServiceProvider implements OnDestroy {
   }
   //////// Getting Authenticated User Id //////////
   getUserId(){
+    console.log('getting the authenticated user id')
     return this.authenticatedUser.uid;
   }
   
   //////// Getting all the user from fireStore ////////
   getAllUsers(){
-    console.log('getting all the users method in profile data service')
+    console.log('getting all the users method in profile data service')  
     this.userProfileobject = this.afs.collection<UserProfile>('/profiles');
     this.profiles = this.userProfileobject.snapshotChanges().pipe(
       map( action => action.map(a =>{

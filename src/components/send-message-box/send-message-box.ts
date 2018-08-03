@@ -2,6 +2,7 @@ import { Component , Input,Output , EventEmitter, OnInit} from '@angular/core';
 
 //for switching between the different pages
 import { FlagServiceProvider } from '../../providers/flag-service/flag-service';
+import { ImghandlerProvider } from '../../providers/image-handler/image-handler';
 
 
 @Component({
@@ -24,7 +25,8 @@ export class SendMessageBoxComponent implements OnInit {
   groupChatFlag:boolean=false;
   oneToOneChatFlag:boolean=false;
   constructor( 
-    private flagService:FlagServiceProvider
+    private flagService:FlagServiceProvider,
+    public imgstore: ImghandlerProvider
   ) {
     this.userMsg = new EventEmitter<string>();
     this.channelMsg = new EventEmitter<string>();
@@ -53,6 +55,27 @@ export class SendMessageBoxComponent implements OnInit {
     }
 
   }
+
+  sendPicMsg() {
+    // let loader = this.loadingCtrl.create({
+    //   content: 'Please wait'
+    // });
+    // loader.present();
+    console.log('getting the photo')
+    this.imgstore.picmsgstore().then((imgurl) => {
+     // loader.dismiss();
+      // this.chatservice.addnewmessage(imgurl).then(() => {
+      //   this.scrollto();
+      //   this.newmessage = '';
+      // })
+      alert(imgurl);
+     // this.sendMessage();
+    }).catch((err) => {
+      alert(err);
+      //loader.dismiss();
+    })
+  }
+
   ngOnInit(){
     
   }

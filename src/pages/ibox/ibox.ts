@@ -4,7 +4,7 @@ import { PopoverController } from 'ionic-angular';
 
 import { ProfileDataServiceProvider } from '../../providers/profile-data-service/profile-data-service';
 import { Subscription } from 'rxjs';
-
+import { Storage } from '@ionic/storage';
 @IonicPage()
 @Component({
   selector: 'page-ibox',
@@ -18,13 +18,19 @@ export class IboxPage implements OnDestroy {
     private navCtrl: NavController,
     private navParams: NavParams,
     private popoverCtrl: PopoverController,
-    private profileService: ProfileDataServiceProvider
+    private profileService: ProfileDataServiceProvider,
+    private storage:Storage
   ) {
-    this.userId = this.profileService.getUserId();
+   // this.userId = this.profileService.getUserId();
+    this.storage.get('authenticatedUser').then((val)=>{
+      console.log(val);
+      this.userId = val.uid;
+    })
 
     ///////// Getting All the users from Databasee ///////////
     this.usersData = this.profileService.getAllUsers().subscribe(
       (data: any) => {
+        console.log(data);
         for (let i = 0; i < data.length; i++) {
           if (data[i].id != this.userId) {
             console.log(data[i]);

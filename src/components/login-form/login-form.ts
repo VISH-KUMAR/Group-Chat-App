@@ -10,7 +10,9 @@ import { LoginResponse } from '../../models/login/loginResponse.interface';
 import { AuthServiceProvider } from '../../providers/auth-service/auth-service';
 import { AngularFireAuth } from 'angularfire2/auth';
 
-
+import { Storage } from '@ionic/storage';
+import { GooglePlus } from '@ionic-native/google-plus';
+import firebase from 'firebase';
 @Component({
   selector: 'login-form',
   templateUrl: 'login-form.html'
@@ -25,7 +27,8 @@ export class LoginFormComponent {
     private authService:AuthServiceProvider,
     private afAuth:AngularFireAuth,
     private loadingCtrl:LoadingController,
-
+    private storage:Storage,
+    public googlePlus:GooglePlus,
   ) {
     this.loginData = new EventEmitter<any>();
  
@@ -33,6 +36,7 @@ export class LoginFormComponent {
 
   async submit(){
     console.log(this.account);
+    this.storage.set('userCredentials',this.account);
     this.loader = this.loadingCtrl.create({
       content: "Please wait...",
       dismissOnPageChange:true,
@@ -67,25 +71,25 @@ export class LoginFormComponent {
     this.navCtrl.push('RegisterPage');
   }
   login(){
-    let status = this.authService.loginWithGoogle();
-    if(status){
-      this.navCtrl.setRoot('TabsPage'); 
-    }
-      // console.log('asdfdsf')
-      // this.googlePlus.login({
-      //   'webClientId':'1023118639001-e361mahqj7qoapu553o1nkujcem91ora.apps.googleusercontent.com',
-      //   'offline':true
-      // }).then(res =>{
-      //   firebase.auth().signInWithCredential(
-      //       firebase.auth.GoogleAuthProvider.credential(res.idToken))
-      //         .then(suc =>{
-      //           alert('LOGIN SUCCESSFUL')
-      //           this.navCtrl.setRoot('TabsPage');
-      //         }).catch(err=>{
-      //           alert('LOGIN UNSUCCESSFUL')
-      //           this.navCtrl.setRoot('LoginPage');
-      //         })
-      // })
+    // let status = this.authService.loginWithGoogle();
+    // if(status){
+    //   this.navCtrl.setRoot('TabsPage'); 
+    // }
+      alert('you are loggin with google id');
+      this.googlePlus.login({
+        'webClientId':'1023118639001-e361mahqj7qoapu553o1nkujcem91ora.apps.googleusercontent.com',
+        'offline':true
+      }).then(res =>{
+        firebase.auth().signInWithCredential(
+            firebase.auth.GoogleAuthProvider.credential(res.idToken))
+              .then(suc =>{
+                alert('LOGIN SUCCESSFUL')
+                this.navCtrl.setRoot('EditProfilePage');
+              }).catch(err=>{
+                alert('LOGIN UNSUCCESSFUL')
+                this.navCtrl.setRoot('LoginPage');
+              })
+      })
    
   }
 

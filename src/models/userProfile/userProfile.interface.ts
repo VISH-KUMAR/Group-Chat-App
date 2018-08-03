@@ -6,4 +6,5 @@ export interface UserProfile{
     avatar:string;
     userName:string;
     status?:string;
+    imgurl?:string;
 }
