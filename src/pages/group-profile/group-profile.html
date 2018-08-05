@@ -12,24 +12,27 @@
 
 
 <ion-content padding>
-  <ion-card no-margin no-padding style="width:100%; height:70%">
+  <!-- <ion-card no-margin no-padding style="width:100%; height:70%">
     <img src="assets/imgs/1.png" alt="profielImage" />
-  </ion-card>
+  </ion-card> -->
+  <div class="profile_img">
+    <img src="assets/imgs/1.png" alt="profielImage" />
+    <div class="profile_img_name">{{groupName}}</div>
+  </div>
   <ion-card-header padding-vertical>
     Total Friends:{{totalFriends}}
   </ion-card-header>
   <ion-list>
     <ion-item *ngFor="let member of group">
       <ion-avatar item-start>
-        <img src="assets/imgs/1.png" alt="avatar">
+        <img src="{{member.profilePic}}" alt="avatar">
       </ion-avatar>
       <div>
         <h2>{{ member.userData.firstName }} {{ member.userData.lastName }}</h2>
-        <p>{{member.userData.status}}</p>
       </div>
     </ion-item>
   </ion-list>
   <hr>
-  <button [hidden]="exit" ion-button full color="danger" (click)="exitGroup()">Exit Group</button>
-  <ion-label [hidden]="!exit">You've Exited Group</ion-label>
+  <button [hidden]="!exit" ion-button full color="danger" (click)="exitGroup()">Exit Group</button>
+  <ion-label [hidden]="exit">You've Exited Group</ion-label>
 </ion-content>

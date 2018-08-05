@@ -36,8 +36,8 @@ export class MyApp {
              console.log(data)
              this.authService.signInWithEmailAndPassword(data);
            });
-            //this.rootPage = 'TabsPage';
-            this.rootPage = 'EditProfilePage';
+            this.rootPage = 'TabsPage';
+            //this.rootPage = 'RegisterPage';
          }else{
            this.rootPage = 'StartPage';
          }

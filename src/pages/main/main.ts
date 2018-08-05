@@ -32,11 +32,12 @@ import { Storage } from '@ionic/storage';
   selector: 'page-main',
   templateUrl: 'main.html',
 })
-export class MainPage implements OnInit {
+export class MainPage  {
   loader:Loading;
 
 ////////////////////////////////////
   channel:AngularFirestoreCollection<Channel>;
+  users:AngularFirestoreCollection<any>;
   group:Observable<ChannelId[]>;
   channels:any;
   authenticatedUserId:string; 
@@ -57,15 +58,6 @@ export class MainPage implements OnInit {
     public toastCtrl: ToastController,
     private storage:Storage,
   ) {
-    /*
-    this.storage.get('loginStatus').then(loggedIn=>{
-      if(loggedIn){
-        this.storage.get('userData').then(data=>{
-          
-        })
-      }
-    })
-    */
 
     this.loader = this.loadingCtrl.create({
       content: "Please wait...",
@@ -78,11 +70,12 @@ export class MainPage implements OnInit {
     //for set the no of groups on screen  
     setTimeout(()=>{
       this.authenticatedUserId = this.profileDataService.getUserId()
+      this.group = this.userGroupService.getGroupsOfUser(this.authenticatedUserId);
   },3000);
-  this.group = this.userGroupService.getGroupsOfUser(this.authenticatedUserId);
-   console.log(this.group)
    
-   /*
+
+  ////////// Getting the Public groups ///////
+   
    this.channel = afs.collection<Channel>('/group');
    this.group = this.channel.snapshotChanges().pipe(
      map( action => action.map(a =>{
@@ -91,15 +84,54 @@ export class MainPage implements OnInit {
        return { id , ...data}
       }))
     );
-    */
+    this.group.subscribe((data:any)=>{
+      console.log(data)
+      data.forEach(group=>{
+        console.log(group.id);
+        afs.collection<any>(`/group/${group.id}/members`)
+          .doc(this.authenticatedUserId).valueChanges().subscribe(
+            data=>console.log(data)
+          )
+      })
+    })
   }
   ionViewWillLoad(){
+
+    // console.log(this.profileDataService.getAllUsers());
+    // this.profileDataService.getAllUsers().subscribe(
+    //   (data:any)=>{
+    //     data.forEach(element => {
+    //         console.log(element.id);
+    //     });
+    //   });
+//////////////////////////////////////////
+// this.users = this.afs.collection<any>(`/profiles/${ this.authenticatedUserId}/chats`);
+//       this.group = this.users.stateChanges().pipe(
+//         map(action => action.map(data => {
+//           const msg = data.payload.doc.data() as any;
+//           const id = data.payload.doc.id;
+//           console.log(data)
+//           return { id, ...msg };
+//         }))
+//       );
+     // this.group.subscribe((data:any)=>console.log(data))
+//     this.profileDataService.getActiveUsers(this.authenticatedUserId);
+////////////////////////////////////////////
+
+
+
         //// getting the authenticated user from storage  //// 
         this.storage.get('authenticatedUser').then((val)=>{
           console.log(val);
           this.authenticatedUserId = val.uid;
+          this.profileDataService.getActiveUsers(val.uid).subscribe(
+            (data)=>{
+              console.log(data);
+            }
+          )
           console.log(this.authenticatedUserId)
-        }) 
+        })
+
   }
 /////// for notifications  ////////
   ionViewDidLoad(){
@@ -166,9 +198,6 @@ export class MainPage implements OnInit {
 
 
   allUsers;
-  ngOnInit(){
-    console.log('ngoninit');
-  }
 
   ///////////////////////////////////
   // async getChannels(){

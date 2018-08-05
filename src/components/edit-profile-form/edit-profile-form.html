@@ -1,5 +1,5 @@
 <form action="submit">
-<ion-card>
+<ion-card no-padding no-margin >
     <img [src]="imgurl">
   <ion-card-content no-padding text-center style="width:100%;">
     
@@ -11,13 +11,14 @@
     <button [hidden]="!moveon" ion-button round outline (click)="removePhoto()">Remove Photo</button>
   </div>
 </ion-card-content>
-
 </ion-card>
-  <ion-card>
+
+
+  <ion-card no-margin>
   <ion-card-content padding>
-    <ion-item>
+    <ion-item >
       <ion-label floating>FirstName</ion-label>
-      <ion-input [(ngModel)]="userProfile.firstName" name="firstName" type="text" ></ion-input>
+      <ion-input  [(ngModel)]="userProfile.firstName" name="firstName" type="text" ></ion-input>
     </ion-item>
     <ion-item>
       <ion-label floating>LastName</ion-label>

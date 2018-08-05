@@ -18,7 +18,7 @@
         <ion-item *ngFor="let user of users; let i=index" no-lines no-padding no-margin (press)="selectUser(user,i)"
          [ngClass]="{'added':flags[i]}">
           <ion-avatar item-start >
-            <img src="assets/imgs/1.png" alt="avatar">
+            <img src="{{user.profilePic}}" alt="avatar">
           </ion-avatar>
             <h2>{{user.data.firstName}} {{user.data.lastName}}</h2>
             <p>{{user.data.status}}</p>

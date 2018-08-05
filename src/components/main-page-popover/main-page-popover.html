@@ -1,9 +1,19 @@
-
 <ion-content>
-    <ion-list no-lines no-margin no-padding class="popover">
-        <ion-item (click)="userProfilePage()" class="popover__item">Profile</ion-item>
-        <ion-item (click)="createFriendsGroup()">Create New Friends Group</ion-item>
-        <!-- <ion-item>Create Public Group</ion-item> -->
-        <ion-item (click) ="findFriends()">Find Friends</ion-item>
-    </ion-list>
+  <ion-list no-lines no-margin no-padding class="popover">
+    <ion-item (click)="userProfilePage()" class="popover__item">
+      <ion-icon name="person"></ion-icon>&nbsp;&nbsp;&nbsp;Profile
+    </ion-item>
+    <ion-item (click)="createFriendsGroup()">
+      <ion-icon name="person"></ion-icon>&nbsp;&nbsp;&nbsp;Create New Friends Group
+    </ion-item>
+    <ion-item (click)="createPublicGroup()">
+      <ion-icon name="person"></ion-icon>&nbsp;&nbsp;&nbsp;Create Public Group
+    </ion-item>
+    <ion-item (click)="publicGroups()">
+        <ion-icon name="person"></ion-icon>&nbsp;&nbsp;&nbsp;Public Groups
+      </ion-item>
+    <ion-item (click)="findFriends()">
+      <ion-icon name="search"></ion-icon>&nbsp;&nbsp;&nbsp;Find Friends
+    </ion-item>
+  </ion-list>
 </ion-content>

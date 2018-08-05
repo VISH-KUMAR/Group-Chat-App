@@ -52,7 +52,6 @@ export class ChatMessageComponent {
 
   ////////////Deleting the message/////////////
   delete(message) {
-    console.log('this is is pressed lsdkjfkk')
     console.log(message)
     this.profileDataService.deleteMessage(message, this.userId, this.selectedUserId);
   }

@@ -1,5 +1,5 @@
 {
-  "name": "Group Chat App",
+  "name": "asd123",
   "version": "1.0.0",
   "author": "VICKY KUMAR BAIRWA",
   "homepage": "http://ionicframework.com/",
@@ -48,7 +48,6 @@
     "firebase": "^5.1.0",
     "ionic-angular": "3.9.2",
     "ionicons": "3.0.0",
-    "phonegap-plugin-push": "^2.1.3",
     "rxjs": "^6.2.1",
     "rxjs-compat": "^6.2.1",
     "sw-toolbox": "3.6.0",
@@ -73,11 +72,7 @@
       "cordova-plugin-filechooser": {},
       "cordova-plugin-filepath": {},
       "cordova-plugin-file": {},
-      "cordova-plugin-firebase": {},
-      "phonegap-plugin-push": {
-        "SENDER_ID": "1023118639001",
-        "FCM_VERSION": "11.6.2"
-      }
+      "cordova-plugin-firebase": {}
     },
     "platforms": [
       "android"

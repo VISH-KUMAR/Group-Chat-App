@@ -1,13 +1,51 @@
 page-user-profile {
-    .profileview{
-        background-color: black;
-        height: 22rem;
-        &__img{
-            transform: translate(70px,36px);
-            border-radius: 65px;
-        }
-    }
+    // .profileview{
+    //     background-color: black;
+    //     height: 22rem;
+    //     &__img{
+    //         transform: translate(70px,36px);
+    //         border-radius: 65px;
+    //     }
+    // }
     ion-label{
         display:flex;
     }
+    ion-header {
+        .toolbar {
+          position: absolute;
+            
+          .toolbar-background {
+            background: transparent;
+          }
+          .toolbar-title {
+            color: black;
+          }
+          .bar-button-default-md{
+              color: #000;
+          }
+        }
+      }
+    
+      .user_profile{
+        position: relative;
+        //text-align: center;
+        &__photo{
+            height:350px;
+             width: 100%;
+        }
+        &__name{
+            position: absolute;
+            top: 85%;
+            left: 10%;
+            font-size: 2.0em;
+            width: 100%;
+            font-weight: bold;
+            color: #fff;
+        }
+      }
+
+      ion-label{
+        font-size:   2rem; 
+        color: rgb(102, 102, 102);
+       }
 }

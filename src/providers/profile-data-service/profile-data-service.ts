@@ -137,6 +137,7 @@ export class ProfileDataServiceProvider implements OnDestroy {
       map( action => action.map(a =>{
         const data = a.payload.doc.data() as UserProfile;
         const id = a.payload.doc.id;
+        console.log(data);
         return { id , ...data}
        }))
      );
@@ -161,6 +162,20 @@ export class ProfileDataServiceProvider implements OnDestroy {
   deleteMessage(message , userId , selectedUserId){
     this.messageDoc = this.afs.doc(`/profiles/${userId}/chats/${selectedUserId}/messages/${message.id}`);
     this.messageDoc.delete();
+  }
+group:Observable<any[]>;
+  getActiveUsers(uid){
+    console.log(uid);
+    this.group =  this.afs.collection<any>(`/profiles/${uid}/chats`)
+    .snapshotChanges().pipe(
+      map(action => action.map(data => {
+        const msg = data.payload.doc.data() as any;
+        const id = data.payload.doc.id;
+        console.log(id)
+        return { id, ...msg };
+      }))
+    );
+  return this.group;
   }
 
   ngOnDestroy(){

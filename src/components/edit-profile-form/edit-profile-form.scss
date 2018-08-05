@@ -1,25 +1,11 @@
 edit-profile-form {
-
+      img{
+          height:350px;
+          width: 100%;
+      }
+      ion-card{
+          width: 100% !important;
+      }
 }
-.profile{
-    position: relative;
-    height: 21rem;
-    &__photo{
-        background-size: cover;
-        height: 20rem;
-        -webkit-clip-path: polygon(0 0, 100% 0, 100% 85%, 0 100%);
-        clip-path: polygon(0 0, 100% 0, 100% 85%, 0 100%);
-        position:absolute;
-    }
 
 
-//     &__dp{
-//         position:absolute;
-//         height:13rem;
-//         width:13rem;
-//         border: 5px solid black;
-//         border-radius: 100px;
-//         transform: translate(120%, 120%);
-//     }
-        
- }

@@ -36,6 +36,7 @@ export class UserGroupChatPage implements OnDestroy {
   flag: boolean = false;
   messages = [];
   gpMembers: Subscription;
+  isGroupMember:boolean;
   constructor(
     private navCtrl: NavController,
     private navParams: NavParams,
@@ -84,6 +85,15 @@ export class UserGroupChatPage implements OnDestroy {
       })
 
 
+      ///////
+      this.afs.collection<any>(`/profiles/${this.userId}/groups`)
+      .doc(this.group.id).valueChanges().subscribe(
+        (data:any)=>{
+          console.log(data)
+          this.isGroupMember = data.isGroupMember;
+          })
+
+
   }
 
 
@@ -95,6 +105,7 @@ export class UserGroupChatPage implements OnDestroy {
         id: this.group.id,
         groupName: this.group.groupName,
         group: this.members,
+        isGroupMember:this.isGroupMember
       }
     })
   }
@@ -103,7 +114,10 @@ export class UserGroupChatPage implements OnDestroy {
   groupMsg(event) {
     console.log(this.members)
     console.log(event);
-    this.userGroupService.setMsgToDatabse(this.user, event, this.group.id, this.members);
+          if(this.isGroupMember){
+            console.log(event)
+            this.userGroupService.setMsgToDatabse(this.user, event, this.group.id, this.members);
+        }
   }
 
   ////// deleting the message ///////////

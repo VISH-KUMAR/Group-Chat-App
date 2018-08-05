@@ -2,4 +2,14 @@ login-form {
     .card-content-md {
          padding: 0 1rem 2rem 1rem;
     }
+    
+      ion-card{
+          padding: 40px;
+          width: 100% !important;
+
+      }
+      .card-md{
+        box-shadow: 0 !important;
+        -webkit-box-shadow:0 !important;
+    }
 }

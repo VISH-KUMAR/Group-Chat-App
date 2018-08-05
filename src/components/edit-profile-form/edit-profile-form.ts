@@ -9,6 +9,7 @@ import { ProfileDataServiceProvider } from '../../providers/profile-data-service
 import { ImghandlerProvider } from '../../providers/image-handler/image-handler';
 
 import { Storage } from '@ionic/storage';
+import { FlagServiceProvider } from '../../providers/flag-service/flag-service';
 
 
 @Component({
@@ -34,7 +35,8 @@ export class EditProfileFormComponent {
     private profileDataService: ProfileDataServiceProvider,
     private storage: Storage,
     public imgservice: ImghandlerProvider,
-    public zone: NgZone
+    public zone: NgZone,
+    public flagService: FlagServiceProvider
   ) {
 
     this.loader = this.loadingCtrl.create({
@@ -61,11 +63,13 @@ export class EditProfileFormComponent {
           if (val.profilePic != '' || val.profilePic != null) {
             this.imgurl = val.profilePic;
           }
-
-          this.navCtrl.setRoot('TabsPage');
+          if (!this.flagService.getEditProfileFlag()) {
+            this.navCtrl.setRoot('TabsPage');
+          }
+          //this.navCtrl.setRoot('TabsPage');
         }
       })
-      
+
     setTimeout(() => {
       let user = this.profileDataService.getUserData()
       user.subscribe((data: any) => {
@@ -75,12 +79,12 @@ export class EditProfileFormComponent {
           if (data.profilePic != '' || data.profilePic != null) {
             this.imgurl = data.profilePic;
           }
-            this.profileDataService.setData( this.userProfile , this.imgurl );
-            this.navCtrl.setRoot('TabsPage');           
+          this.profileDataService.setData(this.userProfile, this.imgurl);
+          //this.navCtrl.setRoot('TabsPage');
           this.loader.dismiss();
         }
       })
-    }, 2000);
+    }, 1000);
   }
 
   submit() {

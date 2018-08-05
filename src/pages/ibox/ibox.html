@@ -15,6 +15,8 @@
 
 
 <ion-content padding>
+    <!-- (search)="search($event.target.value)" -->
+    <ion-searchbar (ionInput)="getUsers($event)" [ngClass]="{'show-search':showSearch}"></ion-searchbar>
   <div (swipe)="swipe($event)" class='mainContent'>
   <ion-list>
     <ion-item *ngFor="let user of users" no-lines no-padding no-margin>

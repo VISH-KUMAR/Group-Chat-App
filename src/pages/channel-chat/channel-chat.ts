@@ -15,6 +15,7 @@ import { AngularFirestore, AngularFirestoreCollection } from 'angularfire2/fires
 import { Observable } from 'rxjs';
 import { map } from 'rxjs/operators';
 /////////////////
+import { Storage } from '@ionic/storage';
 
 @IonicPage()
 @Component({
@@ -26,27 +27,56 @@ export class ChannelChatPage {
   channel: Channel;
   channelMessage: Observable<ChannelMessages[]>
   userName;
-  userId:string;
+  userId: string;
   ////////////////////////////////////
   channel1: AngularFirestoreCollection<any>;
   messages: Observable<ChannelId[]>;
   ////////////////////////////
+  flag:boolean=true;
   constructor(
     private navParams: NavParams,
     private chatService: ChatServiceProvider,
     private profileDataService: ProfileDataServiceProvider,
     private afs: AngularFirestore,
-    private flagService: FlagServiceProvider
+    private flagService: FlagServiceProvider,
+    private storage:Storage
   ) {
+    this.flagService.setChannelChatFlag();
+
     this.profileDataService.getUserData().subscribe(data => {
       this.userName = data;
       console.log(data)
     });
+
+/////////////////////////////////////////////////////////////////////////
+    ///////// Getting the userSataus that user is a member or not /////
+     /*This has to be get and store from the database for future reference 
+    if a user logout then this data will be wipe out but in the database usersattus
+    will remain same so this is not so efficient */
+    this.storage.get('groupJoinStatus').then(
+      data=>{
+        if(data != null ){
+        data.forEach(element => {
+          if(element.channelId == this.channel.id){
+            if(element.isMember)
+                this.flag = false;
+             else
+                this.flag = true;   
+          }
+          else{
+            this.flag = true;
+          }
+        });
+      }
+    }
+    )
+    ////////////////////////////////////////////////////////
+
+
   }
 
 
   ionViewWillLoad() {
-    this.flagService.setChannelChatFlag();
     this.channel = this.navParams.get('channel')
     this.userId = this.profileDataService.getUserId();
 
@@ -54,7 +84,7 @@ export class ChannelChatPage {
     // this.channelMessage = this.chatService.getChannelChatMessage(this.channel.id)
 
     //////////////Getting the messages from firebase collection /////////////////
-    this.channel1 = this.afs.collection<any>(`/group/${this.channel.id}/chats`);
+    this.channel1 = this.afs.collection<any>(`/group/${this.channel.id}/members/${this.userId}/chats`);
     this.messages = this.channel1.snapshotChanges().pipe(
       map(action => action.map(data => {
         const msg = data.payload.doc.data();
@@ -68,7 +98,14 @@ export class ChannelChatPage {
   ////////// Sending msg to chat service /////////////
   msgFromSendBox(event) {
     console.log(event)
-    this.chatService.sendChannelChatMessage(this.userName.data.userName, this.channel, event, this.userId);
+    this.afs.collection<any>(`/group/${this.channel.id}/members`, ref => ref.where("isGroupMember", "==", true))
+      .doc(this.userId).valueChanges().subscribe(
+        (data: any) => {
+          console.log(data)
+          if (data.isGroupMember) {
+            this.chatService.sendChannelChatMessage(this.userName.data.userName, this.channel, event, this.userId);
+          }
+        });
   }
 
   ///////// Deleting message/////////
@@ -76,4 +113,18 @@ export class ChannelChatPage {
     console.log(message);
     this.chatService.deleteMessage(message, this.channel.id);
   }
+  groupJoinStatus=[];
+  joinPublicGroup() {
+    this.groupJoinStatus.push({
+      channelId:this.channel.id,
+      isMember:true
+    })
+    this.flag = false;
+    ////// Setting the group join status for user s///// 
+    this.storage.set('groupJoinStatus',this.groupJoinStatus);
+
+    this.chatService.joinPublicGroup(this.userName.data, this.channel, this.userId)
+  }
+  
+
 }

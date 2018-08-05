@@ -7,12 +7,12 @@ export class FlagServiceProvider {
   channelChatFlag: boolean = false;
   groupChatFlag: boolean = false;
   oneToOneChatFlag: boolean = false;
-
   modalFlag:boolean = false;
   constructor() {
     console.log('Hello FlagServiceProvider Provider');
   }
   setChannelChatFlag() {
+    console.log("set this channel chat flag")
     this.channelChatFlag = true;
     this.groupChatFlag = false;
     this.oneToOneChatFlag = false;
@@ -52,4 +52,12 @@ export class FlagServiceProvider {
     console.log(this.modalFlag)
   }
 
+
+  editProfileFlag:boolean=false;
+  setEditProfileFlag(){
+    this.editProfileFlag = true;
+  }
+  getEditProfileFlag(){
+    return  this.editProfileFlag;
+  }
 }

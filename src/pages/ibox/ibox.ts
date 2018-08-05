@@ -14,6 +14,8 @@ export class IboxPage implements OnDestroy {
   users = [];
   userId: string;
   usersData: Subscription;
+  showSearch:boolean = false;
+  userNames = [];
   constructor(
     private navCtrl: NavController,
     private navParams: NavParams,
@@ -35,6 +37,7 @@ export class IboxPage implements OnDestroy {
           if (data[i].id != this.userId) {
             console.log(data[i]);
             this.users.push(data[i]);
+            this.userNames.push(data[i].data.firstName)
           }
         }
       }
@@ -70,7 +73,36 @@ export class IboxPage implements OnDestroy {
 
   //////////Moving To Search User page///////////
   searchUserPage() {
-    this.navCtrl.push('SearchUserPage')
+    console.log(this.userNames);
+    console.log('opening the search box')
+    this.showSearch = !this.showSearch;
+    console.log(this.showSearch)
+    // this.content.scrollToTop();
+    // this.navCtrl.push('SearchUserPage')
+  }
+  user;
+  getUsers(ev: any) {
+    console.log(ev)
+    const name = ev.target.value;
+    console.log(name);
+    if(name != ''){
+      this.user = this.profileService.searchUser(name);
+      this.user.subscribe(data=>{console.log(data)})
+      console.log(this.user)
+    }
+  //   // Reset items back to all of the items
+  //  // this.initializeItems();
+
+  //   // set val to the value of the searchbar
+  //   const val = ev.target.value;
+
+  //   // if the value is an empty string don't filter the items
+  //   if (val && val.trim() != '') {
+  //     this.userNames = this.userNames.filter((item) => {
+  //       console.log(item.toLowerCase().indexOf(val.toLowerCase()));
+  //       return (item.toLowerCase().indexOf(val.toLowerCase()) > -1);
+  //     })
+  //   }
   }
 
 }

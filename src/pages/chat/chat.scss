@@ -10,6 +10,26 @@ page-chat {
         }
     }
 
+    ion-header {
+        .toolbar {
+          position: absolute;
+            
+          .toolbar-background {
+            background: transparent;
+          }
+          .toolbar-title {
+            color: black;
+          }
+          .bar-button-default-md{
+              color: black;
+          }
+        }
+      }
+      .scroll-content{
+        margin-bottom: 44px;
+        margin-top: 60px;
+      }
+      
 }
 .list-ios > .item-block:first-child {
     border-top:0;

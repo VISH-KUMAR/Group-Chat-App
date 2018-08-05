@@ -4,10 +4,10 @@
     <!-- <chat-page-navbar [user]='user'></chat-page-navbar> -->
     <ion-list no-margin  (click)="profilePage()">
         <ion-item  no-padding  class="item__avatar" >
-          <ion-avatar item-start>
+          <h2>{{user.data.firstName}} {{user.data.lastName}}</h2>
+          <ion-avatar item-end>
             <img src="{{user.profilePic}}" alt="avatar">
           </ion-avatar>
-          <h2>{{user.data.firstName}} {{user.data.lastName}}</h2>
         </ion-item>
       </ion-list>
   </ion-navbar> 

@@ -32,7 +32,6 @@ export class UserGroupChatServiceProvider {
       console.log(val);
       this.userId = val.uid;
     })
-    console.log(this.userId)
 
   }
 
@@ -66,12 +65,17 @@ export class UserGroupChatServiceProvider {
     //this.userGroup = this.afs.collection<any>(`users_group/${this.userId}/groups/${group.groupId}/members`)
     this.userGroup = this.afs.collection<any>(`users_group/${group.groupId}/members`)
     for (let i = 0; i < group.groupMembers.length; i++) {
-      this.userGroup.doc(group.groupMembers[i].id).set({ userData: group.groupMembers[i].data });
+      this.userGroup.doc(group.groupMembers[i].id).set(
+        {
+           userData: group.groupMembers[i].data ,
+           profilePic:group.groupMembers[i].profilePic,
+          isGroupMember:true
+        });
       //setting the group in the selected members
 
       //setting the groupName in the profiles group
       this.afs.collection<any>(`profiles/${group.groupMembers[i].id}/groups`)
-        .doc(group.groupId).set({ groupName: group.groupName })
+        .doc(group.groupId).set({ groupName: group.groupName, isGroupMember:true})
     }
   }
 
@@ -79,6 +83,7 @@ export class UserGroupChatServiceProvider {
   exitGroup(groupId, userId){
     console.log('Exiting the group')
     this.messageDoc = this.afs.doc(`users_group/${groupId}/members/${userId}`);
+    this.afs.collection<any>(`profiles/${userId}/groups`).doc(groupId).update({isGroupMember:false})
     this.messageDoc.delete();
   }
   msgInLS = [];
@@ -112,13 +117,13 @@ export class UserGroupChatServiceProvider {
 
   getGroupMembers(groupId) {
     console.log('getting the members')
-    //this.userGroupMember = this.afs.collection<any>(`/users_group/${userId}/groups/${groupId}/members`);
     
     this.userGroupMember = this.afs.collection<any>(`/users_group/${groupId}/members`);
     this.groupData = this.userGroupMember.snapshotChanges().pipe(
       map(action => action.map(a => {
         const data = a.payload.doc.data();
         const id = a.payload.doc.id;
+        console.log(data);
         console.log(id)
         return { id, ...data }
       }))

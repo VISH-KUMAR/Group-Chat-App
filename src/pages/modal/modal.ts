@@ -17,13 +17,15 @@ import { FlagServiceProvider } from '../../providers/flag-service/flag-service';
 export class ModalPage implements OnDestroy {
   users1: Observable<any[]>;
   users2: Subscription;
-  users;
+  users=[];
   flag: boolean = true;
   groupName: string;
   selectedUsers = [];
   members;
   flags: boolean[] = [];
   groupId: string;
+  userId:string;
+  groupCreator;
   constructor(
     private navParams: NavParams,
     private viewCtrl: ViewController,
@@ -32,7 +34,7 @@ export class ModalPage implements OnDestroy {
     private profileDataService: ProfileDataServiceProvider,
     private flagService: FlagServiceProvider
   ) {
-
+    this.userId = this.profileDataService.getUserId();
   }
 
   ionViewWillLoad() {
@@ -50,9 +52,15 @@ export class ModalPage implements OnDestroy {
     this.users1 = this.profileDataService.getAllUsers();
     this.users2 = this.users1.subscribe(data => {
       console.log(data);
-      this.users = data;
+     // this.users = data;
       for (let i = 0; i < data.length; i++) {
-        this.flags[i] = false;
+        if (data[i].id == this.userId) {
+          this.groupCreator = data[i]; 
+        }else{
+          this.flags[i] = false;
+          console.log(data[i]);
+          this.users.push(data[i]);
+        }
       }
     })
 
@@ -95,6 +103,11 @@ export class ModalPage implements OnDestroy {
 
   //////// Saving the created group /////////
   save() {
+    this.selectedUsers.push(this.groupCreator);
+    if(this.selectedUsers.length<3){
+      alert("You Have to choose at Least three friedns")
+    }
+    else{
     if (!this.flag) {
       ///Getting the group Id ///
       console.log(this.userGroupService.getGroupId(this.groupName))
@@ -119,8 +132,8 @@ export class ModalPage implements OnDestroy {
       console.log(groupUsers)
       this.viewCtrl.dismiss();
     }, 1000)
-
     this.flagService.resetModalFlag();
+  }
   }
 
   //////////// Selecting the Users to add in the group /////////////
@@ -146,7 +159,6 @@ export class ModalPage implements OnDestroy {
         this.selectedUsers.push(user)
       }
     }
-    console.log(this.selectedUsers)
   }
 
 }
