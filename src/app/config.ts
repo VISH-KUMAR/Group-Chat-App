@@ -1,11 +1,12 @@
  // Initialize Firebase
  export const  firebaseConfig = {
  config :{
-    apiKey: "AIzaSyBqkOXvS4MXFp03UgLUS5MFvXhTEvdXrIU",
-    authDomain: "group-chat-825fc.firebaseapp.com",
-    databaseURL: "https://group-chat-825fc.firebaseio.com",
-    projectId: "group-chat-825fc",
-    storageBucket: "group-chat-825fc.appspot.com",
-    messagingSenderId: "1023118639001"
+    apiKey: "enter your api key here",
+    authDomain: " ",
+    databaseURL: " ",
+    projectId: " ",
+    storageBucket: " ",
+    messagingSenderId: " "
   }
+   ////All these information you can get from your firebase project details
 }
