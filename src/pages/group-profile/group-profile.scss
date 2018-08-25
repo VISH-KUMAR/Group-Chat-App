@@ -18,4 +18,11 @@ page-group-profile {
           color: #fff;
       }
     }
+    .exit{
+        text-align: center;
+        &_msg{
+            color: red;
+
+        }
+    }
 }

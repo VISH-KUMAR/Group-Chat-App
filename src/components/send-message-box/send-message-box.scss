@@ -3,15 +3,28 @@ send-message-box {
         &__textArea{
             background-color:rgb(241, 239, 248);
             border-radius: 2rem;
-            border:none;
+            border:1.2px solid rgb(208, 195, 255);
             height: 4.4rem;
             width: 100%;
+            padding-left: 8px;
+            padding-right: 8px;
         }
         &__button{
             width: 100%;
             height: 100%;
             margin:0;
+            background-color:rgb(241, 239, 248);
+            border-radius: 5rem;
+            border:1.2px solid rgb(208, 195, 255);
         }
     }
 }
-
+ion-footer.footer.footer-md {
+    background-color: #DFE9F4;
+}
+.footer-md::before, .tabs-md[tabsPlacement="bottom"] > .tabbar::before {
+     top: 0; 
+     bottom: 0; 
+     background-position: left 0 top 0; 
+     height: 0; 
+}

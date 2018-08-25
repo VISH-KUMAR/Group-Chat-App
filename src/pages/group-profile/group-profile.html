@@ -1,6 +1,5 @@
 <ion-header>
-
-  <ion-navbar>
+  <ion-navbar color="primary1">
     <ion-title>{{groupName}}</ion-title>
     <ion-buttons end>
       <button (click)="addMember()" ion-button icon-only clear>
@@ -9,12 +8,7 @@
     </ion-buttons>
   </ion-navbar>
 </ion-header>
-
-
 <ion-content padding>
-  <!-- <ion-card no-margin no-padding style="width:100%; height:70%">
-    <img src="assets/imgs/1.png" alt="profielImage" />
-  </ion-card> -->
   <div class="profile_img">
     <img src="assets/imgs/1.png" alt="profielImage" />
     <div class="profile_img_name">{{groupName}}</div>
@@ -34,5 +28,7 @@
   </ion-list>
   <hr>
   <button [hidden]="!exit" ion-button full color="danger" (click)="exitGroup()">Exit Group</button>
-  <ion-label [hidden]="exit">You've Exited Group</ion-label>
+  <div [hidden]="exit" class="exit">
+    <p class="exit_msg">You've Exited Group</p>
+  </div>
 </ion-content>

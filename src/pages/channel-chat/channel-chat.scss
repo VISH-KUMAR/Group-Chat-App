@@ -1,20 +1,74 @@
 page-channel-chat {
+    .scroll-content{
+        background-image: linear-gradient(to top, #d7d2cc 0%, #304352 100%);
+        margin-bottom: 44px;
+        margin-top: 60px;
+    }
+        ion-header {
+        .toolbar {
+          position: absolute;
+          //box-shadow: 0 8px 10px #31e68e;
+          box-shadow: 0 9px 10px #304352;
+            
+          .toolbar-background {
+            background: transparent;
+          }
+          .toolbar-title {
+            color: black;
+          }
+          .bar-button-default-md{
+              color: black;
+          }
+        }
+      }
 }
 .messages__li {
         
     clear: both;
     display: block;
-    max-width: 60%;
-    border-radius: 8px;
+    max-width: 75%;
+    border-radius: 10px;
     padding: 8px;
     margin-top: .7rem;
+  
 }
 .messages__left{
-    background-color: #eee;
+    // background-color: #eee;
+   background-color: rgb(218, 230, 245);
+    color: #000;
     float: left;
+    // border:1px solid #000;
+    box-shadow: 0 1px 8px   rgb(218, 230, 245);
 }
 .messages__right{
-    background-color: #488aff;
+    //background-color: #488aff;
+    background-color: #8A99FE;
+    color:#fff;
     float: right;
+    box-shadow: 0 1px 8px  #8A99FE;
+
+    // border: 1px solid #000;
+
+}
+.accept{
+    content: '';
+    height: 2px;
+    background: #eee;
+    display: block;
+    top: 50%;
+    position: absolute;
+    left: 0%;
+    width: 100%;
+&_msg{
+    margin: 0;
+    text-align: center;
+    width: 100%;
+    font-size: 100%;
+    float: none;
+    position: relative;
+}
+}
+.accept_button{
+    text-align: center;
 }
 

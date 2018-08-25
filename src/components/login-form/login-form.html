@@ -3,7 +3,7 @@
     <ion-card-header text-center no-padding margin-top><h1>LOGIN</h1></ion-card-header>
   <ion-card-content>
       <ion-item>
-          <ion-label floating  no-margin><ion-icon name="mail" item-left primary></ion-icon>Email</ion-label>
+          <ion-label floating  no-margin color="primary2"><ion-icon name="mail" item-left primary></ion-icon>Email</ion-label>
           <ion-input 
           type="email"
           [(ngModel)]="account.email"
@@ -16,7 +16,7 @@
           <span>!!!Enter a valid email address</span>
         </div>
         <ion-item>
-          <ion-label floating  no-margin><ion-icon name="lock" item-left primary></ion-icon>Password</ion-label>
+          <ion-label floating  no-margin color="primary2"><ion-icon name="lock" item-left primary></ion-icon>Password</ion-label>
           <ion-input 
           [(ngModel)]="account.password" 
           type="password"
@@ -25,15 +25,21 @@
           required
           ></ion-input>
         </ion-item>
+        <div class="resetPass">
+          <a href="javascript:;" (click)="forgetPassword()">Forget Password?</a>
+        </div>
         <div padding *ngIf="password.invalid && password.dirty"> 
           <span>!!!Enter a valid password</span>
         </div>
-        <button (click)="submit()" ion-button  outline margin-top color="primary" block >Login</button>
+        <button (click)="submit()" ion-button   margin-top color="primary1" block >Login</button>
     <p text-center  margin-top>-or-</p>
-    <button ion-button  icon-left outline  block margin-top (click) = "login()" color="danger">
+    <button ion-button  icon-left   block margin-top (click) = "login()" color="danger">
       <ion-icon name="logo-googleplus"></ion-icon>
         LOGIN WITH GOOGLE
       </button>
   </ion-card-content>
 </ion-card>
 </form>
+<div class="text-center text-muted" margin-top>
+  Don't have account yet? <a href='javascript:;' (click)="goToRegisterPage()">Sign up</a>
+</div>

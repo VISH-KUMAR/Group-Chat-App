@@ -34,6 +34,8 @@ import { FlagServiceProvider } from '../providers/flag-service/flag-service';
 import { IonicStorageModule } from '@ionic/storage';
 import { ImghandlerProvider } from '../providers/image-handler/image-handler';
 import { FcmProvider } from '../providers/fcm/fcm';
+/////// For Image Viewer//////////////
+import { IonicImageViewerModule } from 'ionic-img-viewer';
 
 firebase.initializeApp(firebaseConfig.config);
 
@@ -53,7 +55,8 @@ firebase.initializeApp(firebaseConfig.config);
     AngularFireDatabaseModule,
   //  AngularFireOfflineModule,
        // Just like that, you're offline enabled!
-    AngularFirestoreModule.enablePersistence()
+    AngularFirestoreModule.enablePersistence(),
+    IonicImageViewerModule
   ],
   bootstrap: [IonicApp],
   entryComponents: [

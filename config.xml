@@ -1,5 +1,5 @@
 <?xml version='1.0' encoding='utf-8'?>
-<widget id="com.groupChat.apk1" version="0.0.1" xmlns="http://www.w3.org/ns/widgets" xmlns:cdv="http://cordova.apache.org/ns/1.0">
+<widget id="com.groupChat.apk2" version="0.0.1" xmlns="http://www.w3.org/ns/widgets" xmlns:cdv="http://cordova.apache.org/ns/1.0">
     <name>Group Chat App</name>
     <description>Group Chat App </description>
     <author email="vkeykumar1996@gmail.com" href="http://ionicframework.com/">VICKY KUMAR BAIRWA</author>
@@ -87,9 +87,10 @@
     <plugin name="cordova-plugin-filechooser" spec="^1.0.1" />
     <plugin name="cordova-plugin-filepath" spec="^1.3.0" />
     <plugin name="cordova-plugin-file" spec="^6.0.1" />
-    <plugin name="cordova-plugin-firebase" spec="^1.0.5" />
     <plugin name="cordova-plugin-googleplus" spec="^5.3.0">
         <variable name="REVERSED_CLIENT_ID" value="com.googleusercontent.apps.1023118639001-e361mahqj7qoapu553o1nkujcem9" />
     </plugin>
+    <plugin name="cordova-plugin-firebase" spec="^1.0.5" />
+    <allow-navigation href="http://192.168.43.157:8100" />
     <engine name="android" spec="7.0.0" />
 </widget>

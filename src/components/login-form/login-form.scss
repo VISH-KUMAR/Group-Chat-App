@@ -1,15 +1,26 @@
 login-form {
+   
     .card-content-md {
-         padding: 0 1rem 2rem 1rem;
+    //     padding: 0 1rem 2rem 1rem;
     }
     
       ion-card{
-          padding: 40px;
+         
           width: 100% !important;
-
+          //  background-image: linear-gradient(to top, #dfe9f3 0%, white 100%);
       }
-      .card-md{
-        box-shadow: 0 !important;
-        -webkit-box-shadow:0 !important;
-    }
+    //   .card-md{
+    //     box-shadow: 0 0 0 0 !important;
+    //     -webkit-box-shadow:0 0 0 0  !important;
+    // }
+}
+text-muted {
+    color: #9aa0ac !important;
+}
+.text-center {
+    text-align: center !important;
+}
+.resetPass{
+    text-align: end;
+    margin-top: 4px;
 }

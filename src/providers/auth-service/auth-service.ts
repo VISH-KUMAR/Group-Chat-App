@@ -15,11 +15,10 @@ export class AuthServiceProvider {
   constructor(
     private afAuth:AngularFireAuth,
     public googlePlus:GooglePlus,
-    private storage:Storage
+    private storage:Storage,
   ) {
     
   }
-
   ////// register /////
    createUserWithEmailAndPassword(account:Account){
     try{
@@ -34,7 +33,6 @@ export class AuthServiceProvider {
       }
     }
   }
-
   /////// sign in  ////// 
    signInWithEmailAndPassword(account:Account){
     try{
@@ -50,35 +48,33 @@ export class AuthServiceProvider {
       }
     }
   }
-
   getAuthenticatedUser(){
-    //this returns the all the data about the user such email, name and userName 
+    //// this returns the all the data about the user such email, name and userName //// 
     return this.afAuth.authState;
   }
 
   signOut(){
-    
     this.afAuth.auth.signOut();
-    // this.storage.set('loginStatus',false);
-    // this.storage.remove('userCredentials');
+    // this.storage.set('loginStatus',false); //
+    // this.storage.remove('userCredentials'); //
     this.storage.clear();
     return true;
   }
 
   loginWithGoogle(){
-    console.log('asdfasdf')
+    alert('asdfasdf')
     this.googlePlus.login({
-      'webClientId':'1023118639001-e361mahqj7qoapu553o1nkujcem91ora.apps.googleusercontent.com',
+      'webClientId':'193352565084-m9n871j3mbuhtd33fa9p7lh04uo9k209.apps.googleusercontent.com',
       'offline':true
     }).then(res =>{
       firebase.auth().signInWithCredential(
           firebase.auth.GoogleAuthProvider.credential(res.idToken))
             .then(suc =>{
               alert('LOGIN SUCCESSFUL')
-              return true;
+             // return true;
             }).catch(err=>{
               alert('LOGIN UNSUCCESSFUL')
-              return false;
+              //return false;
             })
     })
   }

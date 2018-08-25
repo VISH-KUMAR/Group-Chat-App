@@ -28,7 +28,7 @@ export class MyApp {
       // Here you can do any higher level natived things you might need.
       statusBar.styleDefault();
       splashScreen.hide();
-      this.pushNotification();
+     // this.pushNotification();
        this.storage.get('loginStatus').then(data=>{
          console.log(data);
          if(data){
@@ -44,6 +44,7 @@ export class MyApp {
        })
       });
   }
+  /*
   pushNotification(){
     const options: PushOptions = {
       android: {
@@ -67,6 +68,6 @@ export class MyApp {
    pushObject.on('error').subscribe(error => console.error('Error with Push plugin', error));
   }
 
-  
+  */
 }
 

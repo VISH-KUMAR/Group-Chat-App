@@ -8,7 +8,6 @@ import { SendMessageBoxComponent } from './send-message-box/send-message-box';
 import { ChatPageNavbarComponent } from './chat-page-navbar/chat-page-navbar';
 import { OnlineUsersComponent } from './online-users/online-users';
 import { SearchUserComponent } from './search-user/search-user';
-import { ProfilePicComponent } from './profile-pic/profile-pic';
 //import { MainPagePopoverComponent } from './main-page-popover/main-page-popover';
 
 
@@ -23,7 +22,6 @@ import { ProfilePicComponent } from './profile-pic/profile-pic';
         ChatPageNavbarComponent,
         OnlineUsersComponent,
         SearchUserComponent,
-    ProfilePicComponent
     ],
 	imports: [
         IonicModule
@@ -40,7 +38,6 @@ import { ProfilePicComponent } from './profile-pic/profile-pic';
         ChatPageNavbarComponent,
         OnlineUsersComponent,
         SearchUserComponent,
-        ProfilePicComponent
     ]
 })
 export class ComponentsModule {}

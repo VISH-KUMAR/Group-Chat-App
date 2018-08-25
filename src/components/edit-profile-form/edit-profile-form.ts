@@ -17,14 +17,14 @@ import { FlagServiceProvider } from '../../providers/flag-service/flag-service';
   templateUrl: 'edit-profile-form.html'
 })
 export class EditProfileFormComponent {
-  imgurl = 'https://firebasestorage.googleapis.com/v0/b/group-chat-825fc.appspot.com/o/profileimages%2Fcar1.png?alt=media&token=67dd5760-8869-4678-9ae6-fd6371eb3455';
-  moveon: boolean;
+  imgurl = 'https://firebasestorage.googleapis.com/v0/b/group-chat-825fc.appspot.com/o/profileimages%2Fchat%20app%20user%20logo.jpg?alt=media&token=05e2def7-c60f-403a-a8c0-b71545963606';
+  
+  moveon: boolean = false;
 
   userProfile: UserProfile = {
     firstName: '',
     lastName: '',
     userName: '',
-    avatar: '',
     status: '',
   }
 
@@ -62,6 +62,10 @@ export class EditProfileFormComponent {
           this.userProfile = val.data;
           if (val.profilePic != '' || val.profilePic != null) {
             this.imgurl = val.profilePic;
+            if(this.imgurl != "https://firebasestorage.googleapis.com/v0/b/group-chat-825fc.appspot.com/o/profileimages%2Fchat%20app%20user%20logo.jpg?alt=media&token=05e2def7-c60f-403a-a8c0-b71545963606" )
+            {
+              this.moveon = true;
+            }
           }
           if (!this.flagService.getEditProfileFlag()) {
             this.navCtrl.setRoot('TabsPage');
@@ -78,6 +82,10 @@ export class EditProfileFormComponent {
           this.userProfile = data.data;
           if (data.profilePic != '' || data.profilePic != null) {
             this.imgurl = data.profilePic;
+            if(this.imgurl != "https://firebasestorage.googleapis.com/v0/b/group-chat-825fc.appspot.com/o/profileimages%2Fchat%20app%20user%20logo.jpg?alt=media&token=05e2def7-c60f-403a-a8c0-b71545963606" )
+            {
+              this.moveon = true;
+            }
           }
           this.profileDataService.setData(this.userProfile, this.imgurl);
           //this.navCtrl.setRoot('TabsPage');
@@ -111,14 +119,14 @@ export class EditProfileFormComponent {
       this.zone.run(() => {
         this.imgurl = uploadedurl;
         if (this.imgurl != '') {
-          this.moveon = false;
+          this.moveon = true;
         }
       })
     })
   }
 
   removePhoto() {
-    this.imgurl = 'https://firebasestorage.googleapis.com/v0/b/group-chat-825fc.appspot.com/o/profileimages%2Fcar1.png?alt=media&token=67dd5760-8869-4678-9ae6-fd6371eb3455';
-    this.moveon = true;
+    this.imgurl = 'https://firebasestorage.googleapis.com/v0/b/group-chat-825fc.appspot.com/o/profileimages%2Fchat%20app%20user%20logo.jpg?alt=media&token=05e2def7-c60f-403a-a8c0-b71545963606';
+    this.moveon = false;
   }
 }

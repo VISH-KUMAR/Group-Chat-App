@@ -1,9 +1,8 @@
 
 <ion-header>
-
-  <ion-navbar>
+  <ion-navbar color="primary1">
       <ion-title>
-        All Users
+       <b> V!K</b>  
       </ion-title>
       <ion-buttons end>
         <button ion-button icon-only (click)="searchUserPage()">
@@ -12,14 +11,13 @@
       </ion-buttons>
     </ion-navbar>
 </ion-header>
-
-
 <ion-content padding>
     <!-- (search)="search($event.target.value)" -->
-    <ion-searchbar (ionInput)="getUsers($event)" [ngClass]="{'show-search':showSearch}"></ion-searchbar>
+    <!-- (ionInput)="getUsers($event)" -->
+    <!-- <ion-searchbar (search)="search($event.target.value)"  [ngClass]="{'show-search':showSearch}"></ion-searchbar> -->
   <div (swipe)="swipe($event)" class='mainContent'>
   <ion-list>
-    <ion-item *ngFor="let user of users" no-lines no-padding no-margin>
+    <ion-item *ngFor="let user of users"  no-padding no-margin>
       <ion-avatar item-start >
          <img src="{{user.profilePic}}" alt="avatar"> <!-- (click)="showPhoto($event, 'assets/imgs/1.png')" -->
       </ion-avatar>

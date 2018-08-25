@@ -1,28 +1,22 @@
 page-register {
-    ion-header {
-        // ion-navbar.toolbar.toolbar-md{
-        //     box-shadow: 0 0 3px 0 #000000;
-        // }
-        .toolbar {
-          position: absolute;
-            
-          .toolbar-background {
-            background: transparent;
-            
-          }
-          .toolbar-title {
-            color: black;
-          }
-          .bar-button-default-md{
-              color: #000;
-          }
-        }
-      }
-
-      .scroll-content{
-        margin-bottom: 44px;
-        margin-top: 60px;
-        padding: 0  !important;
-      }
-
+  // ion-header {
+  //     .toolbar {
+  //       position: absolute;
+  //       .toolbar-background {
+  //         background: transparent;
+  //       }
+  //       .toolbar-title {
+  //         color: black;
+  //       }
+  //       .bar-button-default-md{
+  //           color: #000;
+  //       }
+  //     }
+  //   }
+  .scroll-content {
+    // margin-bottom: 44px;
+    // margin-top: 60px;
+    // padding: 0  !important;
+    background-image: linear-gradient(to top, #dfe9f3 0%, white 100%);
+  }
 }

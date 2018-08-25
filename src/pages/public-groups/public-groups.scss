@@ -1,3 +1,11 @@
 page-public-groups {
-
+  #android-frame .statusbar {
+    background-color: #2980B9;
+  }
+  ion-searchbar {
+    display: none;
+  }
+  .show-search {
+    display: block;
+  }
 }

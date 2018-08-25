@@ -68,7 +68,6 @@ export class ModalPage implements OnDestroy {
 
       this.alertCtrl.create({
         title: 'Group Name',
-        subTitle:'Choose yourself too..',
         inputs: [{
           name: 'groupName'
         }], 
@@ -80,7 +79,7 @@ export class ModalPage implements OnDestroy {
             }
           },
           {
-            text: 'Add',
+            text: 'Create Group',
             handler: data => {
               if (data.groupName != '') {
                 console.log('creating a group')

@@ -37,7 +37,7 @@ export class IboxPage implements OnDestroy {
           if (data[i].id != this.userId) {
             console.log(data[i]);
             this.users.push(data[i]);
-            this.userNames.push(data[i].data.firstName)
+            //this.userNames.push(data[i].data.firstName)
           }
         }
       }
@@ -73,13 +73,12 @@ export class IboxPage implements OnDestroy {
 
   //////////Moving To Search User page///////////
   searchUserPage() {
-    console.log(this.userNames);
     console.log('opening the search box')
-    this.showSearch = !this.showSearch;
-    console.log(this.showSearch)
+    //this.showSearch = !this.showSearch;
+    this.navCtrl.push('SearchUserPage')
     // this.content.scrollToTop();
-    // this.navCtrl.push('SearchUserPage')
   }
+  /////////////////////////////////////
   user;
   getUsers(ev: any) {
     console.log(ev)

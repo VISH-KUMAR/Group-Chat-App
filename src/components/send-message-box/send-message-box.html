@@ -1,15 +1,30 @@
 <ion-row no-padding>
   <ion-col col-8 no-padding class="sendbox">
-    <input no-margin class="sendbox__textArea" type="textarea" placeholder="Enter Message" [(ngModel)]="message">
+    <input no-margin class="sendbox__textArea" type="textarea" placeholder="Send A Message" [(ngModel)]="message">
   </ion-col>
   <ion-col col-2 no-padding>
-      <button class="sendbox__button" ion-button  icon-only (click)="img()">
-          <ion-icon name="attach"></ion-icon>
+      <button class="sendbox__button" color="primary1" ion-button clear  icon-only (click)="img()">
+          <ion-icon name="image"></ion-icon>
         </button>
       </ion-col>
   <ion-col col-2 no-padding>
-    <button class="sendbox__button" ion-button clear  icon-only (click)="sendMessage()">
+    <button class="sendbox__button" color="primary1" ion-button clear  icon-only (click)="sendMessage()">
       <ion-icon name="send"></ion-icon>
     </button>
   </ion-col>
 </ion-row>
+<!-- <div  class="sendbox">
+  <div>
+    <input no-margin class="sendbox__textArea" type="textarea" placeholder="Send A Message" [(ngModel)]="message">
+  </div>
+  <div>
+    <button class="sendbox__button" ion-button clear  icon-only (click)="img()">
+      <ion-icon name="image"></ion-icon>
+    </button>
+  </div>
+  <div>
+    <button class="sendbox__button" ion-button clear  icon-only (click)="sendMessage()">
+      <ion-icon name="send"></ion-icon>
+    </button>
+  </div>
+</div> -->

@@ -1,10 +1,7 @@
 <ion-header>
-  <ion-navbar>
-    <ion-title>V!K</ion-title>
+  <ion-navbar color="primary1">
+    <ion-title><b>V!K</b></ion-title>
     <ion-buttons end>
-      <button ion-button icon-only (click)="showAlertBox()">
-        <ion-icon name="add"></ion-icon>
-      </button>
       <button ion-button icon-only (click)="presentPopover($event)">
         <ion-icon name="more"></ion-icon>
       </button>
@@ -13,6 +10,26 @@
 </ion-header>
 <ion-content padding class="mainPage">
 <div (swipe)="swipe($event)" class='mainContent'>
+  <ion-list>
+    <ion-item *ngFor="let channel of group | async ">
+      <ion-avatar item-start >
+        <img src="assets/imgs/1.png" alt="avatar" >
+      </ion-avatar>
+      <div (click)="selectedGroup(channel)">
+        <h2>{{ channel.groupName }}</h2>
+      </div>
+    </ion-item>
+  </ion-list>
+ </div>
+</ion-content>
+
+
+
+
+
+
+
+ <!--  (click)="showPhoto($event)" -->
   <!-- <ion-list>
     <ion-item *ngFor="let channel of group | async ">
       <ion-avatar item-start >
@@ -24,15 +41,3 @@
       </div>
     </ion-item>
   </ion-list> -->
-  <ion-list>
-    <ion-item *ngFor="let channel of group | async ">
-      <ion-avatar item-start >
-        <img src="assets/imgs/1.png" alt="avatar" > <!--  (click)="showPhoto($event)" -->
-      </ion-avatar>
-      <div (click)="selectedGroup(channel)">
-        <h2>{{ channel.groupName }}</h2>
-      </div>
-    </ion-item>
-  </ion-list>
- </div>
-</ion-content>

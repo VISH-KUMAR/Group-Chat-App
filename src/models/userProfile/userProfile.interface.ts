@@ -3,7 +3,6 @@
 export interface UserProfile{
     firstName:string;
     lastName:string;
-    avatar:string;
     userName:string;
     status?:string;
     imgurl?:string;

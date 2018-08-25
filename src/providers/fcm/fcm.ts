@@ -17,19 +17,19 @@ export class FcmProvider {
   }
 
   // Get permission from the user
-  async getToken() {
+   getToken() {
     let token;
-
+    this.firebaseNative.grantPermission();
   if (this.platform.is('android')) {
-    token = await this.firebaseNative.getToken()
+    token =  this.firebaseNative.getToken()
     console.log(token);
     alert(token);
   } 
   console.log('getting the token')
-  if (this.platform.is('ios')) {
-    token = await this.firebaseNative.getToken();
-    await this.firebaseNative.grantPermission();
-  } 
+  // if (this.platform.is('ios')) {
+  //   token = await this.firebaseNative.getToken();
+  //   await this.firebaseNative.grantPermission();
+  // } 
   
   return this.saveTokenToFirestore(token)
    }
@@ -43,7 +43,7 @@ export class FcmProvider {
       token,
       userId: 'userId',
     }
-    alert(docData);
+    alert(docData.token.token+"  "+docData.userId);
     return devicesRef.doc(token).set(docData)
   }
 

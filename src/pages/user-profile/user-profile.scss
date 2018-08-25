@@ -7,6 +7,7 @@ page-user-profile {
     //         border-radius: 65px;
     //     }
     // }
+   
     ion-label{
         display:flex;
     }
@@ -37,7 +38,7 @@ page-user-profile {
             position: absolute;
             top: 85%;
             left: 10%;
-            font-size: 2.0em;
+             font-size: 2.0em;
             width: 100%;
             font-weight: bold;
             color: #fff;
@@ -45,7 +46,7 @@ page-user-profile {
       }
 
       ion-label{
-        font-size:   2rem; 
+        // font-size:   2rem; 
         color: rgb(102, 102, 102);
        }
 }

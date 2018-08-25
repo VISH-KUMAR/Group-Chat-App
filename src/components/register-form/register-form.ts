@@ -33,4 +33,8 @@ export class RegisterFormComponent {
     this.registerStatus.emit(err)
   }
   }
+  goToLoginPage(){
+    this.navCtrl.push('LoginPage');
+  }
+
 }

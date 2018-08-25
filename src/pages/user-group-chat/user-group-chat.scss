@@ -1,8 +1,33 @@
 page-user-group-chat {
+    .scroll-content{
+        background-image: linear-gradient(to top, #dfe9f3 0%, white 100%);
+        margin-bottom: 44px;
+        margin-top: 60px;
+    }
+    .groupExit_msg{
+        text-align: center;
+    }
+    ion-header {
+        .toolbar {
+          position: absolute;
+          //box-shadow: 0 8px 10px #31e68e;
+          box-shadow: 0 9px 10px #f8f8f8;
+            
+          .toolbar-background {
+            background: transparent;
+          }
+          .toolbar-title {
+            color: black;
+          }
+          .bar-button-default-md{
+              color: black;
+          }
+        }
+      }
 
 }
 .time{
     font-size: 11px;
-    color: rgb(212, 182, 226);
+    color: #5a4852;
     float: right;
 }

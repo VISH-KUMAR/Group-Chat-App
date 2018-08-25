@@ -1,13 +1,17 @@
 page-ibox {
-    
-
+    #android-frame .statusbar{
+        background-color: #2980B9;
+    }
+    .scroll-content{
+        background-image: linear-gradient(to top, #dfe9f3 0%, white 100%);
+    }
 }
-ion-searchbar{
-    display: none;
-}
-.show-search{
-    display: block;
-}
+// ion-searchbar{
+//     display: none;
+// }
+// .show-search{
+//     display: block;
+// }
 .item-md {
     padding-left:0;
 }

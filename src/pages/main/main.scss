@@ -1,14 +1,36 @@
 page-main {
+    ///// For status bar color/////
+   
+    .scroll-content{
+        background-image: linear-gradient(to top, #dfe9f3 0%, white 100%);
+    }
     .item-md {
         padding-left:0;
+        
     }
     .item-ios{
         padding-left: 0;
     }
+    // ion-item.item.item-block.item-md{
+    //     margin-left: 12px;
+    // }
+    // ion-app.md .scroll-content {
+    //     padding : 16px 0 16px 0 !important;
+    // }
 }
 .mainContent{
     height:100%;
 }
-.mainPage{
-    background-image: linear-gradient(primary);
+.item-md ion-avatar img {
+    border-radius: 250%;
+    overflow: hidden;
+    width: 45px;
+    border: 2px solid #2980B9;
+    height: 45px;
 }
+.statusbar{
+    //background-color: #2980B9;
+    background-color: #33aeff;
+
+}
+

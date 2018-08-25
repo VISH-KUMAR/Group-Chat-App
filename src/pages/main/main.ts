@@ -25,6 +25,7 @@ import { ToastController } from 'ionic-angular';
 import { Subject } from 'rxjs/Subject';
 import { tap } from 'rxjs/operators';
 import { Storage } from '@ionic/storage';
+import firebase from 'firebase';
 
 
 @IonicPage()
@@ -58,24 +59,50 @@ export class MainPage  {
     public toastCtrl: ToastController,
     private storage:Storage,
   ) {
+    // setTimeout(() => {
+    //   var a = firebase.auth().currentUser
+    //   console.log(a.email);
+    //   console.log(a.getIdToken().then(data=>{
+    //     console.log(data);
+    //   }));
+    //   console.log(a.emailVerified);
+    //   console.log(a.uid);
+    //   console.log(a.getIdTokenResult());
+    //   console.log(firebase.auth().onAuthStateChanged.toString)
+    // }, 5000);
 
+    //// getting the authenticated user from storage  //// 
+    
     this.loader = this.loadingCtrl.create({
       content: "Please wait...",
-      duration:1000,
+      duration:2000,
       dismissOnPageChange:true
     });
     this.loader.present();
+
+    this.storage.get('authenticatedUser').then((val)=>{
+      console.log(val);
+      this.authenticatedUserId = val.uid;
+      this.group = this.userGroupService.getGroupsOfUser(this.authenticatedUserId);
+      this.profileDataService.getActiveUsers(val.uid).subscribe(
+        (data)=>{
+          console.log(data);
+        }
+      )
+      console.log(this.authenticatedUserId)
+    });
+
+    
     
     
     //for set the no of groups on screen  
     setTimeout(()=>{
-      this.authenticatedUserId = this.profileDataService.getUserId()
-      this.group = this.userGroupService.getGroupsOfUser(this.authenticatedUserId);
+     // this.authenticatedUserId = this.profileDataService.getUserId()
   },3000);
    
 
   ////////// Getting the Public groups ///////
-   
+   /*
    this.channel = afs.collection<Channel>('/group');
    this.group = this.channel.snapshotChanges().pipe(
      map( action => action.map(a =>{
@@ -93,7 +120,7 @@ export class MainPage  {
             data=>console.log(data)
           )
       })
-    })
+    })*/
   }
   ionViewWillLoad(){
 
@@ -120,41 +147,29 @@ export class MainPage  {
 
 
 
-        //// getting the authenticated user from storage  //// 
-        this.storage.get('authenticatedUser').then((val)=>{
-          console.log(val);
-          this.authenticatedUserId = val.uid;
-          this.profileDataService.getActiveUsers(val.uid).subscribe(
-            (data)=>{
-              console.log(data);
-            }
-          )
-          console.log(this.authenticatedUserId)
-        })
+    
 
   }
 /////// for notifications  ////////
   ionViewDidLoad(){
-    /*
-     // Get a FCM token
-     this.fcm.getToken()
+    
+    //  // Get a FCM token
+    // this.fcm.getToken()
      
-    setTimeout(()=>{
-      // Listen to incoming messages
-      this.fcm.listenToNotifications().pipe(
-        tap(msg => {
-          // show a toast
-          const toast = this.toastCtrl.create({
-            message: msg.body,
-            duration: 3000
-          });
-          toast.present();
-        })
-      )
-      .subscribe()
-    },3000)
-    */
-  }
+    //   // Listen to incoming messages
+    //   this.fcm.listenToNotifications().pipe(
+    //     tap(msg => {
+    //       // show a toast
+    //       const toast = this.toastCtrl.create({
+    //         message: msg.body,
+    //         duration: 3000
+    //       });
+    //       toast.present();
+    //     })
+    //       ).subscribe()
+    }
+    
+  
   
  
   ///// moving to selected the group  chat page /////

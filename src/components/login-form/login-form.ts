@@ -47,6 +47,9 @@ export class LoginFormComponent {
     // const loginResponse = this.authService.signInWithEmailAndPassword(this.account);
     // this.loginData.emit(loginResponse);
     // console.log(loginResponse)
+    
+    // var user = firebase.auth().currentUser;
+    // console.log(user);
     this.loader.present();
     try{
     const result = {
@@ -71,11 +74,12 @@ export class LoginFormComponent {
     this.navCtrl.push('RegisterPage');
   }
   login(){
-    // let status = this.authService.loginWithGoogle();
+    alert('you are loggin with google id');
+     this.authService.loginWithGoogle();
     // if(status){
     //   this.navCtrl.setRoot('TabsPage'); 
     // }
-      alert('you are loggin with google id');
+    /*
       this.googlePlus.login({
         'webClientId':'1023118639001-e361mahqj7qoapu553o1nkujcem91ora.apps.googleusercontent.com',
         'offline':true
@@ -90,7 +94,15 @@ export class LoginFormComponent {
                 this.navCtrl.setRoot('LoginPage');
               })
       })
+      */
    
+  }
+  goToRegisterPage(){
+    this.navCtrl.push('RegisterPage');
+  }
+  forgetPassword(){
+    alert("Dusra Account Bna le...........(:");
+    alert("this functionality will come soon...");
   }
 
 }

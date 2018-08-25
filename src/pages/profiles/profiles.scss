@@ -16,12 +16,13 @@ page-profiles {
       }
       img{
           height:350px;
-          width: 100%;
+          width: 100%; 
       }
 
       .profile_img{
         position: relative;
         //text-align: center;
+        
         &_name{
             position: absolute;
             top: 85%;
@@ -33,7 +34,6 @@ page-profiles {
         }
       }
       ion-label{
-       font-size:   2rem; 
        color: rgb(102, 102, 102);
       }
       .ion_btn{

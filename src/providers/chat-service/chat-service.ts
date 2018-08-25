@@ -52,8 +52,11 @@ export class ChatServiceProvider {
         return { id, ...data }
       }))
     ).subscribe((data:any)=>{
-      this.channel = this.afs.collection<any>(`/group/${channel.id}/members/${data.id}/chats`);
-      this.channel.add({userName:userName,message:msg, uid:userId});
+      data.forEach(element => {
+        console.log(element.id)
+        this.channel = this.afs.collection<any>(`/group/${channel.id}/members/${element.id}/chats`);
+        this.channel.add({userName:userName,message:msg, uid:userId});
+      });
     })
   }
 

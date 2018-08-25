@@ -68,6 +68,7 @@ export class ChannelChatPage {
           }
         });
       }
+      
     }
     )
     ////////////////////////////////////////////////////////
@@ -115,14 +116,24 @@ export class ChannelChatPage {
   }
   groupJoinStatus=[];
   joinPublicGroup() {
-    this.groupJoinStatus.push({
-      channelId:this.channel.id,
-      isMember:true
+    this.storage.get('groupJoinStatus').then(
+      data=>{
+        if(data === null){
+          this.groupJoinStatus.push({
+            channelId:this.channel.id,
+            isMember:true
+          })
+          this.storage.set('groupJoinStatus',this.groupJoinStatus);
+        }else{
+        data.push({
+            channelId:this.channel.id,
+            isMember:true
+          })
+            ////// Setting the group join status for user s///// 
+           this.storage.set('groupJoinStatus',data);
+      }
     })
     this.flag = false;
-    ////// Setting the group join status for user s///// 
-    this.storage.set('groupJoinStatus',this.groupJoinStatus);
-
     this.chatService.joinPublicGroup(this.userName.data, this.channel, this.userId)
   }
   

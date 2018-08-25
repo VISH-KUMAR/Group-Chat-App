@@ -2,18 +2,12 @@
 <ion-card no-padding no-margin >
     <img [src]="imgurl">
   <ion-card-content no-padding text-center style="width:100%;">
-    
-  <!-- <div class="profile-image">
-    <img [src]="imgurl">
-  </div> -->
   <div>
-    <button ion-button round outline (click)="chooseimage()">Choose an image</button>
+    <button ion-button round outline [hidden]="moveon" (click)="chooseimage()">Choose an image</button>
     <button [hidden]="!moveon" ion-button round outline (click)="removePhoto()">Remove Photo</button>
   </div>
 </ion-card-content>
 </ion-card>
-
-
   <ion-card no-margin>
   <ion-card-content padding>
     <ion-item >

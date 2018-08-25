@@ -1,18 +1,25 @@
 page-chat {
+    .scroll-content {
+        background-image: linear-gradient(to top, #dfe9f3 0%, white 100%);
+        margin-bottom: 44px;
+        margin-top: 60px;
+    }
     ion-navbar{
         max-height:6rem;
     }
     .item__avatar{
         background-color: transparent;
-        
         &-img{
             margin:0;
+            //border: 1px #31e68e;
         }
     }
 
     ion-header {
         .toolbar {
           position: absolute;
+          //box-shadow: 0 8px 10px #31e68e;
+          box-shadow: 0 9px 10px #f8f8f8;
             
           .toolbar-background {
             background: transparent;
@@ -25,13 +32,11 @@ page-chat {
           }
         }
       }
-      .scroll-content{
-        margin-bottom: 44px;
-        margin-top: 60px;
-      }
-      
 }
 .list-ios > .item-block:first-child {
     border-top:0;
     border-bottom: 0;
+}
+.userPic{
+    
 }

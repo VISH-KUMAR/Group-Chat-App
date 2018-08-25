@@ -9,13 +9,15 @@
 
 <ion-content padding>
     <div class="logo">
-      <img src="assets/imgs/1.png" alt="this is logo">
-      <div class="accetp_button" [hidden]="!flag">
+      <img src="assets/imgs/logo2.png" alt="this is logo">
+      <div class="accept_button" [hidden]="!flag">
         <button ion-button outline (click)="joinPublicGroup()"> Join Group</button>
       </div>
-      <div [hidden]="flag">
-        <p>you've joined the group </p>
+      
+      <div class="accept" [hidden]="flag">
+        <p class="accept_msg">You've joined the group </p>
       </div>
+    
     </div>
     <div class="messages" *ngFor="let message of messages | async">
       <div [class]="message.uid == userId ? 'messages__li messages__right' : 'messages__li messages__left'" (press)="delete(message)">
